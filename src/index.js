@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export default class FileInput extends React.Component {
-  handleChange = e => {
+const FileInput = props => {
+  let _reactFileReaderInput = null;
+
+  const handleChange = e => {
     const files = [];
     for (let i = 0; i < e.target.files.length; i++) {
       // Convert to Array.
@@ -18,8 +20,8 @@ export default class FileInput extends React.Component {
         resolve([result, file]);
       };
 
-      // Read the file with format based on this.props.as.
-      switch ((this.props.as || 'url').toLowerCase()) {
+      // Read the file with format based on props.as.
+      switch ((props.as || 'url').toLowerCase()) {
         case 'binary': {
           reader.readAsBinaryString(file);
           break;
@@ -40,31 +42,30 @@ export default class FileInput extends React.Component {
     })))
     .then(zippedResults => {
       // Run the callback after all files have been read.
-      this.props.onChange(e, zippedResults);
+      props.onChange(e, zippedResults);
     });
   }
 
-  triggerInput = e => {
-    ReactDOM.findDOMNode(this._reactFileReaderInput).click();
+  const triggerInput = e => {
+    ReactDOM.findDOMNode(_reactFileReaderInput).click();
   }
 
-  render() {
-    const hiddenInputStyle = this.props.children ? {
-      // If user passes in children, display children and hide input.
-      position: 'absolute',
-      top: '-9999px'
-    } : {};
+  const hiddenInputStyle = props.children ? {
+    // If user passes in children, display children and hide input.
+    position: 'absolute',
+    top: '-9999px'
+  } : {};
 
-    const {as, style, ...props} = this.props;
+  const {as, style, children, ...restProps} = props;
 
-    return (
-      <div className="_react-file-reader-input" onClick={this.triggerInput} style={style}>
-        <input {...props} children={undefined} type="file"
-               onChange={this.handleChange} ref={c => this._reactFileReaderInput = c}
-               onClick={() => {this._reactFileReaderInput.value = null;}}
-               style={hiddenInputStyle}/>
-        {this.props.children}
-      </div>
-    );
-  }
+  return (
+    <div className="_react-file-reader-input" onClick={triggerInput} style={style}>
+      <input {...restProps} type="file"
+             onChange={handleChange} ref={c => _reactFileReaderInput = c}
+             onClick={() => {_reactFileReaderInput.value = null;}}
+             style={hiddenInputStyle}/>
+      {children}
+    </div>
+  );
 }
+export default FileInput;
