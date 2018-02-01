@@ -1,14 +1,15 @@
 {
   "name": "react-simple-file-reader-input",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "React file input component for complete control over styling and abstraction from file reading.",
-  "main": "./src/index.js",
-  "dependencies": {
-    "prop-types": "^15.5.10"
-  },
+  "main": "./lib/index.js",
+  "dependencies": {},
   "devDependencies": {
-    "babel": "^5.4.7",
-    "babel-runtime": "^5.8.20",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-runtime": "^6.26.0",
     "react": "^15.0.0",
     "react-dom": "^15.6.1"
   },
@@ -17,7 +18,8 @@
     "react-dom": "*"
   },
   "scripts": {
-    "build:lib": "babel --stage 0 src --out-dir lib"
+    "build:lib": "babel src --out-dir lib",
+    "prepublish": "npm run build:lib"
   },
   "repository": {
     "type": "git",

@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const FileInput = props => {
+  const {as, style, onChange, children, ...restProps} = props;
   let _reactFileReaderInput = null;
 
   const handleChange = e => {
@@ -21,7 +22,7 @@ const FileInput = props => {
       };
 
       // Read the file with format based on props.as.
-      switch ((props.as || 'url').toLowerCase()) {
+      switch ((as || 'url').toLowerCase()) {
         case 'binary': {
           reader.readAsBinaryString(file);
           break;
@@ -42,7 +43,7 @@ const FileInput = props => {
     })))
     .then(zippedResults => {
       // Run the callback after all files have been read.
-      props.onChange(e, zippedResults);
+      onChange(e, zippedResults);
     });
   }
 
@@ -50,13 +51,11 @@ const FileInput = props => {
     ReactDOM.findDOMNode(_reactFileReaderInput).click();
   }
 
-  const hiddenInputStyle = props.children ? {
+  const hiddenInputStyle = children ? {
     // If user passes in children, display children and hide input.
     position: 'absolute',
     top: '-9999px'
   } : {};
-
-  const {as, style, children, ...restProps} = props;
 
   return (
     <div className="_react-file-reader-input" onClick={triggerInput} style={style}>
