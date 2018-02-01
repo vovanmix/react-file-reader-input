@@ -1,6 +1,6 @@
 {
   "name": "react-simple-file-reader-input",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "React file input component for complete control over styling and abstraction from file reading.",
   "main": "./lib/index.js",
   "dependencies": {},
@@ -21,10 +21,6 @@
     "build:lib": "babel src --out-dir lib",
     "prepublish": "npm run build:lib"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/vovanmix/react-file-reader-input"
-  },
   "keywords": [
     "react",
     "file",
@@ -37,9 +33,5 @@
     "fake"
   ],
   "author": "Kevin Ngo <me@ngokevin.com> and Vladimir Mikhaylovskiy <singingcode@gmail.com>",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/vovanmix/react-file-reader-input/issues"
-  },
-  "homepage": "https://github.com/vovanmix/react-file-reader-input"
+  "license": "MIT"
 }
