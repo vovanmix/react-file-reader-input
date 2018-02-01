@@ -1,5 +1,8 @@
-react-file-reader-input
+react-simple-file-reader-input
 =======================
+```
+yarn add react-simple-file-reader-input
+```
 
 React file input component for complete control over styling and abstraction
 from file reading.
@@ -32,7 +35,7 @@ input.
 
 ```js
 import React from 'react';
-import FileReaderInput from 'react-file-reader-input';
+import FileReaderInput from 'react-simple-file-reader-input';
 
 
 class MyComponent extends React.Component {

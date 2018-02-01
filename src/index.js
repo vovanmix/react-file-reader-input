@@ -1,27 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PropTypes from 'prop-types';
 
 export default class FileInput extends React.Component {
-  static propTypes = {
-    as: PropTypes.oneOf(['binary', 'buffer', 'text', 'url']),
-    children: PropTypes.any,
-    onChange: PropTypes.func,
-  }
-
-  constructor(props) {
-    // FileReader compatibility warning.
-    super(props);
-
-    const win = typeof window === 'object' ? window : {};
-    if ((typeof window === 'object') && (!win.File || !win.FileReader || !win.FileList || !win.Blob)) {
-      console.warn(
-        '[react-file-reader-input] Some file APIs detected as not supported.' +
-        ' File reader functionality may not fully work.'
-      );
-    }
-  }
-
   handleChange = e => {
     const files = [];
     for (let i = 0; i < e.target.files.length; i++) {
